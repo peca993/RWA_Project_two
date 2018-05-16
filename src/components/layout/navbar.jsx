@@ -8,8 +8,6 @@ import Scores from './scores';
 export default class Navbar extends React.Component {
 
 
-    
-
     render() {
         return (
             <Router>
