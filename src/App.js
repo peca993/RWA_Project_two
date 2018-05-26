@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './components/navbar.component';
+import {Navbar} from './components';
 import Routes from './Routes';
-
 
 class App extends Component {
   
@@ -17,17 +16,15 @@ class App extends Component {
       }
 }
 
-    
-
   render() {
     return (
       <BrowserRouter>
         <div>
           <Navbar title="RWA 2" links={this.state.links} />
-
-          {this.props.children}
-
-          <Routes/>
+          <div className="container">
+            {this.props.children}
+            <Routes/>
+          </div>
         </div>
       </BrowserRouter>
       
