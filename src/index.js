@@ -1,38 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './components/layout/navbar';
+import App from './App';
 import './style/bootstrap';
-import $ from 'jquery';
-import Cards from './components/game/cards';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from './components/layout/home';
-import './style/style1.css';
+import 'jquery';
+import registerServiceWorker from './registerServiceWorker';
 
-export default class App extends React.Component {
-
-  constructor(){
-    super();
-
-  }
-
-  
-  render(){
-    return(
-    <div>
-      <Navbar/>
-        
-    </div>
-    );
-  }
-
-}
-  
-  // ========================================
-  
-  
-
-  ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-  );
-
+ReactDOM.render(
+    <App/> ,
+    document.getElementById('root'));
+registerServiceWorker();
