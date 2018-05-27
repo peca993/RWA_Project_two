@@ -11,7 +11,8 @@ class App extends Component {
       this.state = {
         links: [
           {title: 'Home', route: '/'},
-          {title: 'About', route: '/about'}
+          {title: 'About', route: '/about'},
+          {title: 'Contact', route: '/contact'}
         ]
       }
 }
@@ -20,7 +21,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar title="RWA 2" links={this.state.links} />
+          <Navbar title="Saki Maca" links={this.state.links} />
           <div className="container">
             {this.props.children}
             <Routes/>
