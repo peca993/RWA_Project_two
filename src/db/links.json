@@ -1,0 +1,6 @@
+{
+    "pages":
+        [
+            {"title": "Editor","route": "/editor"}
+        ]
+}

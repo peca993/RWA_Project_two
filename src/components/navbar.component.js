@@ -4,8 +4,9 @@ import { store } from '../store';
 
 class Navbar extends React.Component {
 
-    componentDidMount(){
 
+    
+    componentDidMount(){
         this.unsubscribe = store.subscribe(() => {
             this.forceUpdate();
         })
@@ -17,11 +18,18 @@ class Navbar extends React.Component {
     
 
     renderLinks(){
-        let listLinks =  store.getState().links.links.map((link,key) =>
+
+        console.log(store.getState().links)
+
+        let listLinks =  store.getState().links.filter((link) => {
+            return link.route !== '/editor';
+        }).map((link,key) =>
             <li key={key} className="nav-item active">
                 <Link className="nav-link" to={link.route} >{link.title}</Link>
             </li>
-        );
+        ).filter((link) => {
+            return link.route !== '/editor';
+        });
 
         return listLinks;
     }
