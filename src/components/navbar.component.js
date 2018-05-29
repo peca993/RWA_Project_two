@@ -4,14 +4,20 @@ import { store } from '../store';
 
 class Navbar extends React.Component {
 
-    /*
-    constructor(title,links){
-        super(title,links);
+    componentDidMount(){
+
+        this.unsubscribe = store.subscribe(() => {
+            this.forceUpdate();
+        })
     }
-    */
+
+    componentWillUnmount(){
+        this.unsubscribe();
+    }
+    
 
     renderLinks(){
-        const listLinks =  store.getState().links.links.map((link,key) =>
+        let listLinks =  store.getState().links.links.map((link,key) =>
             <li key={key} className="nav-item active">
                 <Link className="nav-link" to={link.route} >{link.title}</Link>
             </li>
@@ -20,11 +26,10 @@ class Navbar extends React.Component {
         return listLinks;
     }
  
-    render(){
+    
 
-        console.log(store.getState())
+     render(){
         
-
         return(
             <nav className="navbar navbar-expand-md navbar-light bg-warning">
                 <a className="navbar-brand" ><b>{this.props.title}</b></a>
@@ -36,7 +41,9 @@ class Navbar extends React.Component {
                     <ul className="navbar-nav mr-auto">
 
                             {this.renderLinks()}
-
+                            {store.subscribe(() => {
+                                this.renderLinks()
+                            })}                       
                     </ul>
                 
                 </div>
