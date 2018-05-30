@@ -1,1 +1,2 @@
-export { default as links } from './links';
+export { default as pages } from './pages';
+export { default as title } from './title';

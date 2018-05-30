@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {Navbar} from './components';
 import Routes from './Routes';
-import { store } from './store';
-
 class App extends Component {
  
 
@@ -12,7 +10,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar title="ReactCMS"  links={store.getState()} />
+          <Navbar title="ReactCMS" />
           <div className="container">
             {this.props.children}
             <Routes/>

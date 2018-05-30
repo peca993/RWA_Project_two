@@ -1,6 +1,6 @@
 import { createStore, combineReducers,  applyMiddleware } from 'redux';
 //  SAGA MAYBE IMPORT HERE
-import { links } from '../reducers';
+import { pages,title } from '../reducers';
 
 
 function logger({ getState }) {
@@ -11,7 +11,7 @@ function logger({ getState }) {
   }
 
 
-const reducer = combineReducers({links})
+const reducer = combineReducers({pages,title})
 // middleware SAGA maybe
 const store = createStore(reducer,applyMiddleware(logger))
 //const store = applyMiddleware()(createStore);

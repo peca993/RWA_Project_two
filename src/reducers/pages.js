@@ -4,7 +4,8 @@ const initialState =
           .then(response => response.json())
 */
 
-const initialState = [
+const initialState = 
+[
     {title: 'Editor' , route: '/editor'}
 ]
 
@@ -15,8 +16,7 @@ const reducer = function(state = initialState,action = "NISTA"){
         return state;
     }
     if(action.type === "REMOVE_LINK"){
-        state.links = [{title: 'Editor',route: '/editor'}]
-        return state;
+        return [{title: 'Editor',route: '/editor'}];
     }
     return state;
 }

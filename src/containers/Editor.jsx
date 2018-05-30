@@ -8,20 +8,21 @@ class Editor extends React.Component {
         super(props);
 
         this.state = {
-                title: '',
+                pageName: '',
                 route: '',
-                text: ''
+                text: '',
+                title: ''
         }
 
-        this.handleChangeTitle = this.handleChangeTitle.bind(this);
+        this.handleChangePageName = this.handleChangePageName.bind(this);
         this.handleChangeRoute = this.handleChangeRoute.bind(this);    
         this.handleChangeText = this.handleChangeText.bind(this);
-    
+        this.handleChangeTitle = this.handleChangeTitle.bind(this);
     
     }
 
-    handleChangeTitle(event) {
-        this.setState({title: event.target.value});
+    handleChangePageName(event) {
+        this.setState({pageName: event.target.value});
     }
 
     handleChangeRoute(event) {
@@ -32,9 +33,8 @@ class Editor extends React.Component {
         this.setState({text: event.target.value});
     }
 
-    addPage() {
-        
-
+    handleChangeTitle(event) {
+        this.setState({title: event.target.value});
     }
 
     render(){
@@ -44,11 +44,32 @@ class Editor extends React.Component {
             <div>
                 <h1>Editor</h1>
                 <br/>
+                <br/>
+                <h3>Change title</h3>
+                <br/>
+                <form className="jumbotron" >
+                <label>Title</label>
+                    <input name="title" className="form-control" value={this.state.title} onChange={this.handleChangeTitle} />
+                    <button 
+                        type="button" 
+                        className="btn btn-primary"
+                        onClick={() => {
+                            store.dispatch({
+                                type: "CHANGE_TITLE",
+                                payload: this.state.title
+                            })
+                            this.setState({title: ''});
+                        }}
+                     >
+                        Change title
+                    </button>
+                </form>
+                <br/>
                 <h3>Add page</h3>
                 <br/>
-                <form>
+                <form className="jumbotron">
                     <label>Title</label>
-                    <input name="title" className="form-control" value={this.state.title} onChange={this.handleChangeTitle} />
+                    <input name="title" className="form-control" value={this.state.pageName} onChange={this.handleChangePageName} />
                     <br/>
                     <label>Route</label>
                     <input name="route" className="form-control" value={this.state.route} onChange={this.handleChangeRoute} />
@@ -56,11 +77,6 @@ class Editor extends React.Component {
                     <label>Text</label>
                     <textarea name="text" className="form-control" value={this.state.text} onChange={this.handleChangeText} >
                     </textarea>
-
-                    <br/>
-                    <input type="checkbox" name="homepageCheck"  />
-                    <label>Home page </label>
-
                     <br/>
                     <button 
                         type="button" 
@@ -69,28 +85,25 @@ class Editor extends React.Component {
                             store.dispatch({
                                 type: "ADD_PAGE",
                                 payload: {
-                                    title: this.state.title,
+                                    title: this.state.pageName,
                                     route: "/"+this.state.route,
                                     text: this.state.text
                                 }
                             })
+                            this.setState({pageName: '',route: '',text: ''});
                         }}
                      >
                         Add page
                     </button>
-
-
-                </form>
-                <br/>            
-                <button className="btn btn-danger" onClick={ () => {
+                    
+                    <button type="button" className="btn btn-danger" onClick={ () => {
                      store.dispatch({
                         type: "REMOVE_LINK"
                     })
-            
-                    console.log(store.getState().links.links)
-
                 } 
                 }>Reset</button>
+
+                </form>
             </div>
         );
     }

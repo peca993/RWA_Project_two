@@ -7,7 +7,7 @@ class Page extends React.Component {
 
     render(){
     
-        const content = store.getState().links.find((page) => {
+        const content = store.getState().pages.find((page) => {
             return page.route === '/'+this.props.match.params.link;
         })
 
