@@ -1,9 +1,3 @@
-/*
-const initialState = 
-    fetch("http://localhost:5050/pages")
-          .then(response => response.json())
-*/
-
 const initialState = 
 [
     {title: 'Editor' , route: '/editor'}
